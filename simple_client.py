@@ -23,8 +23,8 @@ else:
 
 def on_connect(client, userdata, flags, rc):
     print('Conectado. Resultado: %s' % str(rc))
-    result, mid = client.subscribe('/buteco/topico')
-    print('Inscrevendo-se no tópico "/buteco/topico" (%d)' % mid)
+    result, mid = client.subscribe('/stormborn/teste')
+    print('Inscrevendo-se no tópico "/stormborn/teste" (%d)' % mid)
 
 
 def on_subscribe(client, userdata, mid, granted_qos):
@@ -34,7 +34,7 @@ def on_subscribe(client, userdata, mid, granted_qos):
 def on_message(client, userdata, msg):
     print('Mensagem recebida no tópico: %s' % msg.topic)
 
-    if msg.topic == '/buteco/topico':
+    if msg.topic == '/stormborn/teste':
         print('Conteúdo da mensagem: %s' % msg.payload)
     else:
         print('Tópico desconhecido.')
@@ -56,7 +56,7 @@ def send_message(msg):
     # descomente esta linha caso seu servidor possua autenticação.
     # client.username_pw_set(MQTT_AUTH.user, MQTT_AUTH.pwd)
     client.connect(MQTT_ADDRESS, MQTT_PORT, MQTT_TIMEOUT)
-    result, mid = client.publish('/buteco/topico', msg)
+    result, mid = client.publish('/stormborn/teste', msg)
     print('Mensagem enviada ao canal: %d' % mid)
 
 
